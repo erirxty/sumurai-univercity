@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="ja">
 <head>
   <title>samurai university</title>
   <meta charset="utf-8" />
@@ -33,27 +32,33 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav flex-row ml-md-auto d-md-flex main_nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="<?php echo esc_url(home_url('/category/news/')); ?>">
-                    NEWS
-                    <p>ニュース</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?php echo esc_url(home_url('/category/events/')); ?>">
-                    EVENT
-                    <p>イベント</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?php echo esc_url(home_url('/courses/')); ?>">
-                    COURSES
-                    <p>コース</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?php echo esc_url(home_url('/about_us/')); ?>">
-                    ABOUT US
-                    <p>侍大学について</p>
+                <a class="nav-link" href="<?php echo home_url(); ?>/category/news">
+NEWS
+<p>ニュース</p>	
+</a>	
+</li>	
+<li class="nav-item">	
+<a class="nav-link" href="<?php echo home_url(); ?>/category/event">
+EVENT	
+<p>イベント</p>	
+</a>	
+</li>	
+<li class="nav-item">	
+	<a class="nav-link" href="<?php echo home_url(); ?>/course">
+  GRADUTES
+<p>卒業生の声</p>	
+</a>	
+</li>	
+<li class="nav-item">	
+	<a class="nav-link" href="<?php echo home_url(); ?>/grades">
+COURSES	
+<p>コース</p>	
+</a>	
+</li>	
+<li class="nav-item">	
+<a class="nav-link" href="<?php echo home_url(); ?>/about_us">
+ABOUT US	
+<p>侍大学について</p>	
                   </a>
                 </li>
               </ul>

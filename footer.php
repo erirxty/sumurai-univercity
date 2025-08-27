@@ -7,7 +7,7 @@
                <div class="footer_section footer_about">
                  <div class="footer_logo_container">
                    <img src="<?php echo get_template_directory_uri(); ?>/images/logo_big.png" alt="" />
-                   <a href="<?php echo esc_url(home_url('/')); ?>">
+                   <a href="">
                      <div class="footer_logo_text">Samurai University</div>
                    </a>
                  </div>
@@ -40,13 +40,12 @@
                <div class="footer_section footer_links">
                  <div class="footer_links_container">
                    <ul>
-                   <li><a href="<?php echo esc_url(home_url('/category/news/')); ?>">ニュース</a></li>
-                      <li><a href="<?php echo esc_url(home_url('/category/events/')); ?>">イベント</a></li>
-                      <li><a href="<?php echo esc_url(home_url('/courses/')); ?>">コース</a></li>
-                      <li><a href="<?php echo esc_url(home_url('/about_us/')); ?>">侍大学について</a></li>
-                    </ul>
-                  </div>
-
+                   <li><a href="<?php echo home_url(); ?>/category/news">ニュース</a></li>
+<li><a href="<?php echo esc_url(home_url('/category/events/')); ?>">イベント</a></li>	<li><a href="<?php echo home_url(); ?>/category/event">イベント</a></li>
+<li><a href="<?php echo esc_url(home_url('/courses/')); ?>">コース</a></li>	<li><a href="<?php echo home_url(); ?>/course">コース</a></li>
+<li><a href="<?php echo esc_url(home_url('/about_us/')); ?>">侍大学について</a></li>	<li><a href="<?php echo home_url(); ?>/about_us">侍大学について</a></li>
+</ul>	</ul>
+</div>	
                </div>
              </div>
              <div class="col-lg-5 footer_col clearfix">

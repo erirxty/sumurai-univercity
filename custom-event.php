@@ -100,6 +100,7 @@ Template Post Type: post
         <?php endif; ?>
 
         <!--  Sidebar -->
+        <div class="col-lg-4" style="background-color: #2b7b8e33">
         <?php get_sidebar(); ?>
         </div>
       </div> 
