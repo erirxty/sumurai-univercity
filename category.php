@@ -6,11 +6,11 @@
         <div class="image_header">
             <div class="header_info">
                 <?php
-                // カテゴリー情報を取得
-                $cat = get_the_category();
-                // 取得したカテゴリー情報からスラッグ名とカテゴリー名を取得
-                $catslug = $cat[0]->slug;
-                $catname = $cat[0]->cat_name;
+                // 現在のカテゴリー情報を取得
+                // get_queried_object() を使用して、現在表示されているオブジェクト（カテゴリー）を確実に取得
+                $current_category = get_queried_object();
+                $catslug = $current_category->slug;
+                $catname = $current_category->name;
                 ?>
                 <!-- カテゴリースラッグを表示 -->
                 <div><?php echo $catslug; ?></div>
@@ -35,7 +35,7 @@
                         <div class="tab_panel_title"><?php echo $catname; ?></div>
                         <div class="tab_panel_content">
                             <div class="tab_panel_text">
-                                <!-- ニュース記事のループ開始 -->
+                                <!-- 記事のループ開始 -->
                                 <?php if (have_posts()) : ?>
                                     <?php while(have_posts()) : the_post(); ?>
                                     <div class="news_posts_small">
@@ -45,9 +45,13 @@
                                                     <div class="calendar_news_border_1">
                                                         <div class="calendar_month">
                                                             <?php 
-                                                                // カテゴリーが 'event' の場合はカスタムフィールド 'month' を表示、それ以外は投稿月を表示
+                                                                // カテゴリーが 'event' の場合はカスタムフィールド 'month' を表示
                                                                 if( is_category('event') ) :
                                                                     echo get_post_meta(get_the_ID(), 'month', true);
+                                                                // カテゴリーが 'graduates' の場合はカスタムフィールド 'graduate_year' を表示
+                                                                elseif ( is_category('graduates') ) :
+                                                                    echo get_post_meta(get_the_ID(), 'graduate_year', true);
+                                                                // それ以外の場合は投稿月（例: August）を表示
                                                                 else:
                                                                     echo get_post_time('F');
                                                                 endif;
@@ -56,9 +60,13 @@
                                                         <div class="calendar_day">
                                                             <span>
                                                                 <?php 
-                                                                // カテゴリーが 'event' の場合はカスタムフィールド 'day' を表示、それ以外は投稿日を表示
+                                                                // カテゴリーが 'event' の場合はカスタムフィールド 'day' を表示
                                                                 if( is_category('event') ) :
                                                                     echo get_post_meta(get_the_ID(), 'day', true);
+                                                                // カテゴリーが 'graduates' の場合は "年" というテキストを表示
+                                                                elseif ( is_category('graduates') ) :
+                                                                    echo "年";
+                                                                // それ以外の場合は投稿日（例: 24）を表示
                                                                 else:
                                                                     echo get_the_date('d');
                                                                 endif;
@@ -98,12 +106,17 @@
                                         <hr />
                                     </div>
                                     <?php endwhile; ?>
+                                <?php else : ?>
+                                    <div class="news_posts_small">
+                                        <p>このカテゴリーにはまだ投稿がありません。</p>
+                                    </div>
                                 <?php endif; ?>
-                                <!-- ニュース記事のループ終了 -->
+                                <!-- 記事のループ終了 -->
 
                                 <!-- ページネーションの表示 -->
                                 <div class="news-pagination">
                                     <?php
+                                        // $wp_query はWordPressのメインクエリです。カスタムクエリでない限りこれを使います。
                                         echo paginate_links(array(
                                             'total' => $wp_query->max_num_pages,
                                             'prev_text' => '&lt;&lt;前へ',
