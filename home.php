@@ -188,64 +188,57 @@
         <?php wp_reset_postdata(); ?>
 
       </div>
-        </div>
-    </div>
-  </div>
       <!-- イベントここまで -->
+    </div>
     
-      <!-- 卒業生の声セクション -->
-      <div class="news">
-  <div class="footer_row">
+    <!-- 卒業生の声 -->
     <div class="row news_row">
-      <div class="col-lg-6 col-md-6 col-sx-12 news_col">
+      <div class="col-lg-12 news_col">
         <div class="home_title">Graduates</div>
         <div class="home_title_sub">卒業生の声</div>
-
-        <?php
-        $args = array(
-          'post_type'      => 'post',
-          'category_name' => 'graduates',
-          'posts_per_page' => 3,
-        );
-        $graduates_posts = get_posts($args);
-        ?>
-
-        <?php if (!empty($graduates_posts)) : ?>
-          <?php foreach ($graduates_posts as $post) : ?>
-            <?php setup_postdata($post); ?>
-            <div class="news_post_small">
-              <div class="news_post_meta">
-                <ul>
-                  <li>
-                    <a href="<?php echo get_permalink(); ?>">
-                      <?php echo get_post_meta(get_the_ID(), 'graduate_year', true); ?>年
+        <div class="graduates_container">
+            <?php
+            $args = array(
+              'post_type'      => 'post',
+              'category_name' => 'graduates',
+              'posts_per_page' => 3,
+            );
+            $graduates_posts = get_posts($args);
+            ?>
+            <?php if (!empty($graduates_posts)) : ?>
+              <?php foreach ($graduates_posts as $post) : ?>
+                <?php setup_postdata($post); ?>
+                <div class="news_post_small">
+                  <div class="news_post_meta">
+                    <ul>
+                      <li>
+                        <!-- 投稿日を出力 -->
+                        <a href="<?php echo get_permalink(); ?>">
+                          <?php echo get_the_date(); ?>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="news_post_small_title">
+                    <a href="<?php the_permalink(); ?>">
+                      <?php the_title(); ?>
                     </a>
-                  </li>
-                </ul>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+              <?php wp_reset_postdata(); ?>
+            <?php else : ?>
+              <div class="news_post_small">
+                <p>卒業生の声はまだありません。</p>
               </div>
-              <div class="news_post_small_title">
-                <a href="<?php the_permalink(); ?>">
-                  <?php the_title(); ?>
-                </a>
-              </div>
-            </div>
-          <?php endforeach; ?>
-          <?php wp_reset_postdata(); ?>
-        <?php else : ?>
-          <div class="news_post_small">
-            <p>卒業生の声はまだありません。</p>
-          </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
       </div>
     </div>
+    
   </div>
 </div>
-      <!-- 卒業生の声セクションここまで -->
-
-  
-
-
-
+<!-- ニュースとイベントここまで -->
 
 <!-- コース -->
 <div class="courses">
